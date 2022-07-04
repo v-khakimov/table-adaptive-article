@@ -1,0 +1,5 @@
+:root {
+  --color-grey: #8c8c8c;
+}
+
+.grey {color: var(--color-grey);}

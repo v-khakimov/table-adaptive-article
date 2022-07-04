@@ -1,17 +1,31 @@
 <script setup>
 import { setMq } from './store-variables/media-queries';
+import ButtonsForTable from './components/ButtonsForTable.vue';
 
 setMq();
 </script>
 
 <template>
-  <p>There will be an adaptive table here.</p>
+  <ButtonsForTable />
 </template>
 
 <style>
 @import './css/reset.css';
 @import './css/font-family.css';
 @import './css/media-queries.css';
+
+.flex,
+#app {
+  display: flex;
+}
+.wrap,
+#app {
+  flex-wrap: wrap;
+}
+.ac-start,
+#app {
+  align-content: flex-start;
+}
 
 #app {
   padding: 1em 0;

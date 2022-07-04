@@ -1,0 +1,6 @@
+.ac-start {composes: ac-start from global;} /* align-content: flex-start */
+.ai-center {align-items: center;}
+.flex {composes: flex from global;} /* display: flex */
+.fb100 {flex-basis: 100%;}
+.fg1 {flex-grow: 1;}
+.wrap {composes: wrap from global;} /* flex-wrap: wrap */

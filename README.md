@@ -1,5 +1,8 @@
 # table-adaptive
 
+### Commit "CSS modules"
+Create in 'css' folder and use in ButtonsForTable.vue CSS modules
+
 ### Commit "table-data"
 Add './store-constant/table-data.js' with data for the table and user selection
 
