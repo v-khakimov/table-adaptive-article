@@ -1,5 +1,8 @@
 # table-adaptive
 
+### Commit "Adaptive table"
+The table adapts to the small screens of various devices
+
 ### Commit "Classic table: all cells"
 The table is displayed in a classic view with joined cells in rows and columns
 

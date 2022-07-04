@@ -1,4 +1,5 @@
 import { addRowsToHead } from './add-head-rows';
+import { isTableWide } from './computed-table-wide';
 import { transformCellsToObject } from './transform-cells-to-object';
 import { transformRowsToCells } from './transform-rows-to-cells';
 
@@ -7,6 +8,7 @@ const seekHeadCols = (propsHeadCols, propsHeadTitles) => {
   if (propsHeadCols) rows = transformCellsToObject(propsHeadCols);
   if (
     rows &&
+    isTableWide.value &&
     propsHeadTitles &&
     propsHeadTitles.length > propsHeadCols.length
   ) {
@@ -16,8 +18,9 @@ const seekHeadCols = (propsHeadCols, propsHeadTitles) => {
   if (rows) {
     cells = transformRowsToCells(rows, {
       cellType: 'head',
+      colFirst: !isTableWide.value,
       colLast: true,
-      rowFirst: true,
+      rowFirst: isTableWide.value || !propsHeadTitles.length,
     });
   }
   return cells;

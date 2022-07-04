@@ -1,10 +1,12 @@
 <script setup>
-import { computed, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { getColsNumber, setColsNumber } from './computed-cols-number';
+import { isTableWide } from './computed-table-wide';
 import { seekHeadCols } from './seek-head-cols';
 import { seekHeadTitles } from './seek-head-titles';
 import { seekTableCells } from './seek-table-cells';
 import { transformRowsToTemplate } from './transform-rows-to-template';
+import { watchTableWidthWithArg } from './watch-table-width';
 
 const props = defineProps({
   headTitles: Array,
@@ -36,8 +38,11 @@ const props = defineProps({
   } */
 });
 
-setColsNumber([props.titles[0], props.cells[0]]);
-watch(() => [props.titles[0], props.cells[0]], setColsNumber);
+setColsNumber([props.titles[0], props.cells[0], isTableWide.value]);
+watch(
+  () => [props.titles[0], props.cells[0], isTableWide.value],
+  setColsNumber
+);
 
 const getSectionSt = computed(
   () => `display: grid;
@@ -68,10 +73,17 @@ const getTableCells = computed(() =>
     props.classes
   )
 );
+
+const domSection = ref(null);
+const watchTableWidth = () => {
+  watchTableWidthWithArg(domSection.value);
+};
+onMounted(watchTableWidth);
+window.addEventListener('resize', watchTableWidth);
 </script>
 
 <template>
-  <section :class="getSectionCl" :style="getSectionSt">
+  <section :class="getSectionCl" :style="getSectionSt" ref="domSection">
     <h6
       v-for="({ text, cl, st }, i) in getTableHead"
       :key="`cell-head-${i}`"
