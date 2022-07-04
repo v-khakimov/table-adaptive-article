@@ -1,5 +1,11 @@
 # table-adaptive
 
+### Commit "CommonButtonsRadio"
+Add './components/CommonButtonsRadio.vue'
+Use it in './components/ButtonsForTable.vue'
+Props and emit for it in '../store-variables/body-type', '../store-variables/price-type'
+Css-classes: './css/buttons-radio-color.module.css', './css/buttons-radio-grey.module.css'
+
 ### Commit "CSS modules"
 Create in 'css' folder and use in ButtonsForTable.vue CSS modules
 

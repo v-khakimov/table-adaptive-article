@@ -1,0 +1,14 @@
+.each {
+  composes: fg1 from './flex.module.css';
+  composes: padding from './gaps.module.css';
+  composes: center from './text.module.css';
+}
+
+.selected {
+  composes: white from './colors.module.css';
+}
+
+.unselected {
+  composes: pointer from './cursor.module.css';
+  composes: shadow from './shadow.module.css';
+}

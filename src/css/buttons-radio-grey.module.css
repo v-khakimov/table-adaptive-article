@@ -1,0 +1,18 @@
+.each {
+  composes: each from './buttons-radio.module.css';
+  composes: bt-grey br-grey bb-grey from './colors.module.css';
+}
+
+.first {
+  composes: bl-grey from './colors.module.css';
+}
+
+.selected {
+  composes: selected from './buttons-radio.module.css';
+  composes: back-grey from './colors.module.css';
+}
+
+.unselected {
+  composes: unselected from './buttons-radio.module.css';
+  composes: grey from './colors.module.css';
+}

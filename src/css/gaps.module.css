@@ -6,6 +6,7 @@
 .pb {padding-bottom: var(--gap);}
 .pr {padding-right: var(--gap);}
 .pt {padding-top: var(--gap);}
+.padding {padding: var(--gap);}
 
 .pl2 {padding-left: var(--gap-twice);}
 .pr2 {padding-right: var(--gap-twice);}

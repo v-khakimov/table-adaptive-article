@@ -1,5 +1,23 @@
 :root {
+  --color-blue: #2d96cd;
   --color-grey: #8c8c8c;
+  --color-white: #fff;
+  --color-major: var(--color-blue);
 }
 
+.back-grey {background-color: var(--color-grey);}
+.back-color {background-color: var(--color-major);}
+
+.bb-grey {border-bottom: 1px solid var(--color-grey);}
+.bl-grey {border-left: 1px solid var(--color-grey);}
+.br-grey {border-right: 1px solid var(--color-grey);}
+.bt-grey {border-top: 1px solid var(--color-grey);}
+
+.bb {border-bottom: 1px solid var(--color-major);}
+.bl {border-left: 1px solid var(--color-major);}
+.br {border-right: 1px solid var(--color-major);}
+.bt {border-top: 1px solid var(--color-major);}
+
 .grey {color: var(--color-grey);}
+.color {color: var(--color-major);}
+.white {color: var(--color-white);}
