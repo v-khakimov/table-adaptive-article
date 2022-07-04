@@ -1,0 +1,33 @@
+/*
+  1134px = 30cm by this link:
+  https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units
+*/
+
+/* Mobile, Portrait */
+@media (max-aspect-ratio: 6/5) {
+  body {
+    color: rgb(0, 0, 0);
+    font-size: calc(12 * 100vw / 320);
+  }
+}
+/* Mobile, Landscape */
+@media (max-width: 1134px) and (min-aspect-ratio: 6/5) {
+  body {
+    color: rgb(0, 0, 1);
+    font-size: calc(10 * 100vw / 480);
+  }
+}
+/* Desktop */
+@media (min-width: 1134px) and (min-aspect-ratio: 6/5) {
+  body {
+    color: rgb(0, 1, 0);
+    font-size: calc(24 * 100vw / 1920);
+  }
+}
+/* Wide (Ultra Wide) Monitors */
+@media (min-width: 1134px) and (min-aspect-ratio: 5/2) {
+  body {
+    color: rgb(1, 0, 0);
+    font-size: calc(22 * 100vw / 2560);
+  }
+}

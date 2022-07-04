@@ -1,5 +1,10 @@
 # table-adaptive
 
+### Commit "media queries"
+Set layouts: Mobile (1. portrait, 2. landscape), 3. Desktop and 4. Wide
+in './css/media-queries.css'
+Watch layouts in './store-variables/media-queries' through body color
+
 ### Commit "start project"
 
 ```
