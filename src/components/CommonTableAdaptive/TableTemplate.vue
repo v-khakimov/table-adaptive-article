@@ -3,6 +3,7 @@ import { computed, watch } from 'vue';
 import { getColsNumber, setColsNumber } from './computed-cols-number';
 import { seekHeadCols } from './seek-head-cols';
 import { seekHeadTitles } from './seek-head-titles';
+import { seekTableCells } from './seek-table-cells';
 import { transformRowsToTemplate } from './transform-rows-to-template';
 
 const props = defineProps({
@@ -60,6 +61,13 @@ const getTableHead = computed(() =>
     props.classes
   )
 );
+
+const getTableCells = computed(() =>
+  transformRowsToTemplate(
+    seekTableCells(props.titles, props.cells),
+    props.classes
+  )
+);
 </script>
 
 <template>
@@ -71,5 +79,13 @@ const getTableHead = computed(() =>
       :style="st"
       v-html="text"
     ></h6>
+
+    <p
+      v-for="({ text, st, cl }, i) in getTableCells"
+      :key="`cell-${i}`"
+      :class="cl"
+      :style="st"
+      v-html="text"
+    ></p>
   </section>
 </template>

@@ -1,5 +1,8 @@
 # table-adaptive
 
+### Commit "Classic table: all cells"
+The table is displayed in a classic view with joined cells in rows and columns
+
 ### Commit "Classic table: head"
 Add interactive head to table
 
