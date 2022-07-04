@@ -1,5 +1,9 @@
 # table-adaptive
 
+### Commit "CommonTableAdaptive: props, API"
+Props object - in './store-variables/table-props.js'
+Table component - in './components/CommonTableAdaptive/'
+
 ### Commit "CommonButtonsRadio"
 Add './components/CommonButtonsRadio.vue'
 Use it in './components/ButtonsForTable.vue'

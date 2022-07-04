@@ -3,6 +3,8 @@
   --gap-twice: 1em;
 }
 
+.mt2 {margin-top: var(--gap-twice);}
+
 .pb {padding-bottom: var(--gap);}
 .pr {padding-right: var(--gap);}
 .pt {padding-top: var(--gap);}

@@ -4,3 +4,4 @@
 .fb100 {flex-basis: 100%;}
 .fg1 {flex-grow: 1;}
 .wrap {composes: wrap from global;} /* flex-wrap: wrap */
+.jc-center {justify-content: center;}

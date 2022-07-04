@@ -1,12 +1,16 @@
 <script setup>
 import { setMq } from './store-variables/media-queries';
+import { getTableProps } from './store-variables/table-props';
 import ButtonsForTable from './components/ButtonsForTable.vue';
+import CommonTableAdaptive from './components/CommonTableAdaptive/TableTemplate.vue';
 
 setMq();
 </script>
 
 <template>
   <ButtonsForTable />
+
+  <CommonTableAdaptive v-bind="getTableProps" />
 </template>
 
 <style>
