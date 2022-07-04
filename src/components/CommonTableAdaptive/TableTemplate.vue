@@ -1,4 +1,10 @@
 <script setup>
+import { computed, watch } from 'vue';
+import { getColsNumber, setColsNumber } from './computed-cols-number';
+import { seekHeadCols } from './seek-head-cols';
+import { seekHeadTitles } from './seek-head-titles';
+import { transformRowsToTemplate } from './transform-rows-to-template';
+
 const props = defineProps({
   headTitles: Array,
   headCols: Array,
@@ -28,4 +34,42 @@ const props = defineProps({
     // colFirst, colLast, rowFirst, rowLast are added to each
   } */
 });
+
+setColsNumber([props.titles[0], props.cells[0]]);
+watch(() => [props.titles[0], props.cells[0]], setColsNumber);
+
+const getSectionSt = computed(
+  () => `display: grid;
+  grid-template-columns: repeat(${getColsNumber.value}, auto);`
+);
+
+const getSectionCl = computed(() =>
+  props.classes && 'outer' in props.classes ? props.classes.outer : ''
+);
+
+const getHeadTitles = computed(() =>
+  seekHeadTitles(props.headTitles, props.headCols)
+);
+const getHeadcols = computed(() =>
+  seekHeadCols(props.headCols, props.headTitles)
+);
+
+const getTableHead = computed(() =>
+  transformRowsToTemplate(
+    [...getHeadTitles.value, ...getHeadcols.value],
+    props.classes
+  )
+);
 </script>
+
+<template>
+  <section :class="getSectionCl" :style="getSectionSt">
+    <h6
+      v-for="({ text, cl, st }, i) in getTableHead"
+      :key="`cell-head-${i}`"
+      :class="cl"
+      :style="st"
+      v-html="text"
+    ></h6>
+  </section>
+</template>

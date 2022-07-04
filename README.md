@@ -1,5 +1,8 @@
 # table-adaptive
 
+### Commit "Classic table: head"
+Add interactive head to table
+
 ### Commit "CommonTableAdaptive: props, API"
 Props object - in './store-variables/table-props.js'
 Table component - in './components/CommonTableAdaptive/'
