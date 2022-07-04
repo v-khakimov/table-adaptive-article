@@ -2,11 +2,12 @@ const bringArray = (arrayOrStr) =>
   Array.isArray(arrayOrStr) ? arrayOrStr : [arrayOrStr];
 
 const transformCellToTemplate = (cell, classes) => {
-  const { text, cols, rows, cellType, clAdd } = cell;
+  const { text, cols, rows, indent, cellType, clAdd } = cell;
 
   let st = cell.st || '';
   if (cols) st += `grid-column-end: span ${cols};`;
   if (rows) st += `grid-row-end: span ${rows};`;
+  if (indent) st += `grid-row-start: ${indent + 1};`;
 
   const cl = [];
   if ('eachCell' in classes) cl.push(...bringArray(classes.eachCell));

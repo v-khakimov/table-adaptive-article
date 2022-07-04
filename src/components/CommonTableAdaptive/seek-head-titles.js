@@ -1,5 +1,7 @@
+import { addHeadIndent } from './add-head-indent';
 import { addRowsToHead } from './add-head-rows';
 import { getColsNumber } from './computed-cols-number';
+import { getHeadIndent } from './computed-head-indent';
 import { isTableWide } from './computed-table-wide';
 import { transformCellsToObject } from './transform-cells-to-object';
 import { transformRowsToCells } from './transform-rows-to-cells';
@@ -21,6 +23,9 @@ const seekHeadTitles = (propsHeadTitles, propsHeadCols) => {
         cols: getColsNumber.value,
       },
     ]);
+    if (getHeadIndent.value > 0) {
+      rows = addHeadIndent(rows, -1);
+    }
   }
   let cells = [];
   if (rows) {

@@ -1,3 +1,4 @@
+import { resetIndent, setHeadIndentFromDom } from './computed-head-indent';
 import { setRowsSplitter } from './computed-rows-splitter';
 import { getPropsCellsFirstRowLength } from './computed-first-row-length';
 import { isTableWide, switchTableWide } from './computed-table-wide';
@@ -51,11 +52,12 @@ const seekRowsSplitter = (domSection, clientWidth) => {
 
 let clientWidthOld;
 
-const watchTableWidth = (domSection, changeProps) => {
+const watchTableWidth = (domSection, propsCellsColsLength, changeProps) => {
   const { clientWidth } = document.documentElement;
   if (changeProps || clientWidth !== clientWidthOld) {
     clientWidthOld = clientWidth;
     setRowsSplitter(1);
+    resetIndent();
     if (!isTableWide.value) switchTableWide();
     setTimeout(() => {
       if (domSection && domSection.offsetWidth > clientWidth) {
@@ -64,6 +66,7 @@ const watchTableWidth = (domSection, changeProps) => {
           if (domSection && domSection.offsetWidth > clientWidth) {
             setRowsSplitter(seekRowsSplitter(domSection, clientWidth));
           }
+          setHeadIndentFromDom(domSection, propsCellsColsLength);
         }, 0);
       }
     }, 0);

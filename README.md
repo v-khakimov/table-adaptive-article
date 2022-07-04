@@ -1,5 +1,8 @@
 # table-adaptive 
 
+### Commit "Moving Table Header"
+Add moving to Table Header on small screens
+
 ### Commit "Many Columns"
 Adaptive table for many columns on small screens
 

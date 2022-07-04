@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
 import { getColsNumber } from './computed-cols-number';
+import { setHeadIndentFromDom } from './computed-head-indent';
 import {
   setPropsTitlesFirstRowLength,
   setPropsCellsFirstRowLength,
@@ -79,17 +80,21 @@ const getTableCells = computed(() =>
 
 const domSection = ref(null);
 onMounted(() => {
-  watchTableWidth(domSection.value);
+  watchTableWidth(domSection.value, props.cells.length);
 });
 window.addEventListener('resize', () => {
-  watchTableWidth(domSection.value);
+  watchTableWidth(domSection.value, props.cells.length);
 });
 watch(
   () => [props.titles[0], props.cells[0]],
   () => {
-    watchTableWidth(domSection.value, 'changeProps');
+    watchTableWidth(domSection.value, props.cells.length, 'changeProps');
   }
 );
+
+window.addEventListener('scroll', () => {
+  setHeadIndentFromDom(domSection.value, props.cells.length);
+});
 </script>
 
 <template>

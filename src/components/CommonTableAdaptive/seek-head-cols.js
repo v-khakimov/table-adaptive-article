@@ -1,3 +1,4 @@
+import { addHeadIndent } from './add-head-indent';
 import { addRowsToHead } from './add-head-rows';
 import { getColsNumber } from './computed-cols-number';
 import { getRowsSplitter } from './computed-rows-splitter';
@@ -16,6 +17,7 @@ const transformRowsThroughOne = (rows) => {
 
 const seekHeadCols = (propsHeadCols, propsHeadTitles) => {
   let rows;
+  let throughOne;
   if (propsHeadCols) rows = transformCellsToObject(propsHeadCols);
   if (
     rows &&
@@ -31,8 +33,14 @@ const seekHeadCols = (propsHeadCols, propsHeadTitles) => {
       firstRowAllCols[0].cols = getColsNumber.value;
     }
     rows = splitRows(rows);
-    if (rows.length > 1) rows = transformRowsThroughOne(rows);
+    if (rows.length > 1) {
+      rows = transformRowsThroughOne(rows);
+      throughOne = true;
+    }
     if (firstRowAllCols) rows.unshift(firstRowAllCols);
+  }
+  if (rows && !isTableWide.value) {
+    rows = addHeadIndent(rows, propsHeadTitles.length, throughOne);
   }
   let cells = [];
   if (rows) {
