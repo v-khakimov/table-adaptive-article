@@ -1,12 +1,66 @@
-const headCols = [
-  [{ text: 'Version', cols: 4 }],
-  ['Zetec', 'Titanium', 'ST-Line', 'Vignale'],
-];
+const headCols = {
+  'Saloon / Hatchback': [
+    [{ text: 'Version', cols: 4 }],
+    ['Zetec', 'Titanium', 'ST-Line', 'Vignale'],
+  ],
+  'Many Columns': [
+    [
+      [{ text: 'Version', cols: 7 }],
+      [
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+        'Vignale',
+        'Zetec New',
+        'Titanium New',
+        'ST-Line New',
+      ],
+    ],
+    [
+      [
+        { text: 'Version Old', cols: 4 },
+        { text: 'Version New', cols: 3 },
+      ],
+      [
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+        'Vignale',
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+      ],
+    ],
+    [
+      [
+        { text: ' Old', cols: 4 },
+        { text: 'Now', cols: 3 },
+        { text: 'New', cols: 4 },
+        { text: 'Future', cols: 2 },
+      ],
+      [
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+        'Vignale',
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+        'Zetec',
+        'Titanium',
+        'ST-Line',
+        'Vignale',
+        'Zetec',
+        'Titanium',
+      ],
+    ],
+  ],
+};
 
 const headTitlesAll = ['Fuel', 'Engine', 'Power', 'Transmission', 'Drive'];
 const headTitles = {
   'Saloon / Hatchback': [['Body', ...headTitlesAll]],
-  Estate: [headTitlesAll],
+  'Many Columns': [headTitlesAll],
 };
 
 const priceTypeNames = {
@@ -44,10 +98,10 @@ const titlesSaloonHatchback = [
 ];
 const titles = {
   'Saloon / Hatchback': titlesSaloonHatchback,
-  Estate: titlesSaloonHatchback.map((row, i) => {
-    const rowEstate = [...row];
-    if (i < 2) rowEstate.shift();
-    return rowEstate;
+  'Many Columns': titlesSaloonHatchback.map((row, i) => {
+    const rowManyColumns = [...row];
+    if (i < 2) rowManyColumns.shift();
+    return rowManyColumns;
   }),
 };
 
@@ -76,27 +130,114 @@ const cells = {
       ['-', '-', '33,165', '35,765'],
     ],
   },
-  Estate: {
+  'Many Columns': {
     retail: [
-      ['23,667', '25,083', '26,167', '28,333'],
-      ['21,917', '23,417', '24,500', '-'],
-      ['23,167', '24,667', '-', '-'],
-      ['-', '25,500', '26,583', '28,750'],
-      ['-', '-', '28,250', '30,417'],
+      [
+        '23,667',
+        '25,083',
+        '26,167',
+        { text: '2 columns', cols: 2 },
+        '29,083',
+        { text: 'last column' },
+      ],
+      ['21,917', '23,417', '24,500', '-', '28,917', '29,417', '30,500'],
+      ['23,167', '24,667', '-', '-', '29,167', '29,667', '-'],
+      ['-', '25,500', '26,583', '28,750', '-', '30,500', '31,583'],
+      ['-', '-', '28,250', '30,417', '-', '-', '32,250'],
     ],
     withVAT: [
-      ['28,400', '30,100', '31,400', '34,000'],
-      ['26,300', '28,100', '29,400', '-'],
-      ['27,800', '29,600', '-', '-'],
-      ['-', '30,600', '31,900', '34,500'],
-      ['-', '-', '33,900', '36,500'],
+      [
+        '28,400',
+        '30,100',
+        { text: '3&nbsp;to&nbsp;[2,1]', cols: 3 },
+        '34,100',
+        { text: 'last column' },
+      ],
+      [
+        '26,300',
+        '28,100',
+        '29,400',
+        { text: '3&nbsp;to&nbsp;[1,2]', cols: 3 },
+        '31,400',
+      ],
+      ['27,800', '29,600', '-', '-', '30,800', '31,600', '-'],
+      ['-', '30,600', '31,900', '34,500', '-', '32,600', '32,900'],
+      ['-', '-', '33,900', '36,500', '-', '-', '34,900'],
     ],
     manufacturers: [
-      ['28,670', '30,410', '31,710', '34,310'],
-      ['26,610', '28,410', '29,710', '-'],
-      ['28,110', '30,265', '-', '-'],
-      ['-', '31,265', '32,565', '35,165'],
-      ['-', '-', '34,565', '37,165'],
+      [
+        '28,400',
+        '30,100',
+        '31,400',
+        { text: '£&nbsp;34,000', cols: 2 },
+        '34,100',
+        '34,400',
+        '28,400',
+        '30,100',
+        '31,400',
+        { text: '£&nbsp;34,000', cols: 2 },
+        '34,100',
+      ],
+      [
+        '26,300',
+        '28,100',
+        '29,400',
+        '-',
+        '30,300',
+        '31,100',
+        '31,400',
+        '26,300',
+        '28,100',
+        '29,400',
+        '-',
+        '30,300',
+        '31,100',
+      ],
+      [
+        '27,800',
+        '29,600',
+        '-',
+        '-',
+        '30,800',
+        '31,600',
+        '-',
+        '27,800',
+        '29,600',
+        '-',
+        '-',
+        '30,800',
+        '31,600',
+      ],
+      [
+        '-',
+        '30,600',
+        '31,900',
+        '34,500',
+        '-',
+        '32,600',
+        '32,900',
+        '-',
+        '30,600',
+        '31,900',
+        '34,500',
+        '-',
+        '32,600',
+      ],
+      [
+        '-',
+        '-',
+        '33,900',
+        '36,500',
+        '-',
+        '-',
+        '34,900',
+        '-',
+        '-',
+        '33,900',
+        '36,500',
+        '-',
+        '-',
+      ],
     ],
   },
 };

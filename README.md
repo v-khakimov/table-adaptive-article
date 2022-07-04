@@ -1,4 +1,7 @@
-# table-adaptive
+# table-adaptive 
+
+### Commit "Many Columns"
+Adaptive table for many columns on small screens
 
 ### Commit "Adaptive table"
 The table adapts to the small screens of various devices

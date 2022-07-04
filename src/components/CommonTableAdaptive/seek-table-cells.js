@@ -1,6 +1,8 @@
 import { checkColFirst } from './check-col-first';
 import { getColsNumber } from './computed-cols-number';
+import { getRowsSplitter } from './computed-rows-splitter';
 import { isTableWide } from './computed-table-wide';
+import { splitRows } from './split-rows';
 import { transformCellsToObject } from './transform-cells-to-object';
 
 const checkRowLast = ({ rows }, iRow, rowsLength) =>
@@ -71,10 +73,15 @@ const seekTableCells = (propsTitlesExt, propsCellsExt) => {
   if (!isTableWide.value) {
     propsTitles = transformCellsWithoutRows(propsTitles);
     propsCells = transformCellsWithoutRows(propsCells);
+    if (getRowsSplitter.value > 1) {
+      propsCells = splitRows(propsCells);
+    }
   }
   const cells = [];
   propsCells.forEach((row, iRow) => {
-    cells.push(...addTitleCells(propsTitles, iRow));
+    if (iRow % getRowsSplitter.value === 0) {
+      cells.push(...addTitleCells(propsTitles, iRow / getRowsSplitter.value));
+    }
     cells.push(...addOtherCells(row, iRow, propsCells.length));
   });
   return cells;

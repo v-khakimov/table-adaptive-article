@@ -1,14 +1,19 @@
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import {
+  getPropsCellsFirstRowLength,
+  getPropsTitlesFirstRowLength,
+} from './computed-first-row-length';
+import { getRowsSplitter } from './computed-rows-splitter';
+import { isTableWide } from './computed-table-wide';
 
-const refColsNumber = ref(0);
-const getColsNumber = computed(() => refColsNumber.value);
+const getColsNumber = computed(() => {
+  let colsNumber = getPropsCellsFirstRowLength.value;
+  if (isTableWide.value) {
+    colsNumber += getPropsTitlesFirstRowLength.value;
+  } else if (getRowsSplitter.value > 1) {
+    colsNumber = Math.ceil(colsNumber / getRowsSplitter.value);
+  }
+  return colsNumber;
+});
 
-const countCollsNum = (row) =>
-  row.reduce((sum, { cols }) => sum + (cols || 1), 0);
-
-const setColsNumber = ([titlesFirstRow, cellsFirstRow, isTableWide]) => {
-  refColsNumber.value = countCollsNum(cellsFirstRow);
-  if (isTableWide) refColsNumber.value += countCollsNum(titlesFirstRow);
-};
-
-export { getColsNumber, setColsNumber };
+export { getColsNumber };

@@ -4,7 +4,7 @@ import { headTitles } from '../store-constant/table-data';
 
 const buttons = Object.keys(headTitles);
 
-const refBodyTypeIndex = ref(0);
+const refBodyTypeIndex = ref(1);
 
 const getBodyTypeIndex = computed(() => refBodyTypeIndex.value);
 

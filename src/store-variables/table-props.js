@@ -20,11 +20,19 @@ const cellswithCl = Object.fromEntries(
       Object.entries(obj).map(([priceType, rows]) => [
         priceType,
         rows.map((row) =>
-          row.map((price) =>
-            price === '-'
-              ? { text: '-', clAdd: [colors.grey] }
-              : { text: `£&nbsp;${price}`, clAdd: [text.bold] }
-          )
+          row.map((priceExt) => {
+            let price;
+            if (typeof priceExt === 'object') {
+              price = priceExt;
+            } else {
+              price =
+                priceExt === '-'
+                  ? { text: '-', clAdd: [colors.grey] }
+                  : { text: `£&nbsp;${priceExt}` };
+            }
+            if (!('clAdd' in price)) price.clAdd = [text.bold];
+            return price;
+          })
         ),
       ])
     ),
@@ -65,9 +73,13 @@ const getClasses = computed(() => {
   return classes;
 });
 
+const headColsValues = Object.values(headCols);
+
 const getTableProps = computed(() => ({
   headTitles: Object.values(headTitles)[getBodyTypeIndex.value],
-  headCols,
+  headCols: getBodyTypeIndex.value
+    ? headColsValues[getBodyTypeIndex.value][getPriceTypeIndex.value]
+    : headColsValues[getBodyTypeIndex.value],
   titles: Object.values(titles)[getBodyTypeIndex.value],
   cells: Object.values(Object.values(cellswithCl)[getBodyTypeIndex.value])[
     getPriceTypeIndex.value

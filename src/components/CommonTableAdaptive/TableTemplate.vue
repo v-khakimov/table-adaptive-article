@@ -1,12 +1,15 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
-import { getColsNumber, setColsNumber } from './computed-cols-number';
-import { isTableWide } from './computed-table-wide';
+import { getColsNumber } from './computed-cols-number';
+import {
+  setPropsTitlesFirstRowLength,
+  setPropsCellsFirstRowLength,
+} from './computed-first-row-length';
 import { seekHeadCols } from './seek-head-cols';
 import { seekHeadTitles } from './seek-head-titles';
 import { seekTableCells } from './seek-table-cells';
 import { transformRowsToTemplate } from './transform-rows-to-template';
-import { watchTableWidthWithArg } from './watch-table-width';
+import { watchTableWidth } from './watch-table-width';
 
 const props = defineProps({
   headTitles: Array,
@@ -38,11 +41,11 @@ const props = defineProps({
   } */
 });
 
-setColsNumber([props.titles[0], props.cells[0], isTableWide.value]);
-watch(
-  () => [props.titles[0], props.cells[0], isTableWide.value],
-  setColsNumber
-);
+setPropsTitlesFirstRowLength(props.titles[0]);
+watch(() => props.titles[0], setPropsTitlesFirstRowLength);
+
+setPropsCellsFirstRowLength(props.cells[0]);
+watch(() => props.cells[0], setPropsCellsFirstRowLength);
 
 const getSectionSt = computed(
   () => `display: grid;
@@ -75,11 +78,18 @@ const getTableCells = computed(() =>
 );
 
 const domSection = ref(null);
-const watchTableWidth = () => {
-  watchTableWidthWithArg(domSection.value);
-};
-onMounted(watchTableWidth);
-window.addEventListener('resize', watchTableWidth);
+onMounted(() => {
+  watchTableWidth(domSection.value);
+});
+window.addEventListener('resize', () => {
+  watchTableWidth(domSection.value);
+});
+watch(
+  () => [props.titles[0], props.cells[0]],
+  () => {
+    watchTableWidth(domSection.value, 'changeProps');
+  }
+);
 </script>
 
 <template>
