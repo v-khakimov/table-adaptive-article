@@ -1,5 +1,8 @@
 # table-adaptive
 
+### Commit "table-data"
+Add './store-constant/table-data.js' with data for the table and user selection
+
 ### Commit "media queries"
 Set layouts: Mobile (1. portrait, 2. landscape), 3. Desktop and 4. Wide
 in './css/media-queries.css'
